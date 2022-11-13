@@ -1,0 +1,28 @@
+.array-todo-wrapper + .array-todo-wrapper {
+  margin-left: 12px;
+}
+.array-todo {
+  width: 272px;
+  max-height: calc(100vh - 80px);
+  padding: 8px;
+  overflow: auto;
+  background-color: #e2e8f4;
+  border-radius: 0px 0px 3px 3px;
+}
+
+.todo-item {
+  border-radius: 3px;
+  background-color: #ebecf0;
+  padding: 8px;
+  margin-top: 8px;
+  border: 1px solid #f0f0f0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.array-todo-title {
+  border-radius: 3px 3px 0px 0px;
+  background-color: #e2e8f4;
+  padding: 8px;
+  width: 272px;
+  font-weight: 700;
+}

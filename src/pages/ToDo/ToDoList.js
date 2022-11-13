@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './TodoList.scss';
 import { Navigate } from 'react-router-dom';
+import { AiOutlineLogout } from 'react-icons/ai';
+
+import './TodoList.scss';
 import Spin from 'components/Spin';
+import AddJob from 'components/AddJob';
+import ArrayToDo from 'components/ArrayToDo';
 
 export default function ToDoList() {
   const [jobs, setJobs] = useState([]);
@@ -27,10 +31,9 @@ export default function ToDoList() {
 
   let token = localStorage.getItem('jwt-token');
 
-  const handleAddJob = async () => {
+  const handleAddJob = async description => {
     let newJob = {
-      _id: Math.floor(Math.random() * 1000),
-      name: job,
+      name: description,
       completed: false,
       content: 'CRUD FastAPI , ReactJs, MongoDB',
       image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb-oKFFYpkJj1_6vGlDVlKFjuRIfcDIa4qhbFlDHA3TA&s',
@@ -99,52 +102,19 @@ export default function ToDoList() {
       {isLogOut && <Navigate to="/" replace={true} />}
 
       <div className="container-todo">
-        <div>
-          <button className="logout" onClick={handleLogOut}>
-            LogOut
-          </button>
-        </div>
-        <div className="title-todo">ToDoList</div>
-        <div className="todo-task-add">
-          <input type="text" onChange={handleInput} value={job} />
-          &nbsp;
-          <span onClick={handleAddJob}>Add</span>
-        </div>
-        <div className="task-list container">
-          {jobs &&
-            jobs.length > 0 &&
-            jobs.map((item, index) => {
-              return (
-                <div key={index}>
-                  <div className="task-todo ">
-                    <span>Task{index + 1}:</span>
-                    {item.name} &nbsp; &nbsp;
-                    {isEdit && item._id === jobEdit._id ? (
-                      <>
-                        <div className="task-edit">
-                          <input type="text" onChange={handleInputEdit} value={jobEdit.name} />
-                        </div>
-                        <div className="btn-save" onClick={() => handleSaveJob(item._id)}>
-                          Save
-                        </div>{' '}
-                        &nbsp; &nbsp;
-                      </>
-                    ) : (
-                      <>
-                        <div className="btn-edit" onClick={() => handleEditJob(item)}>
-                          Edit
-                        </div>{' '}
-                        &nbsp; &nbsp;
-                      </>
-                    )}
-                    <div className="btn-delete" onClick={() => handleDelete(item._id)}>
-                      Delete
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
+        <ArrayToDo tasks={jobs} />
+        <ArrayToDo tasks={jobs} />
+        <ArrayToDo tasks={jobs} />
+        <ArrayToDo tasks={jobs} />
+        <ArrayToDo tasks={jobs} />
+        <ArrayToDo tasks={jobs} />
+
+        {/* fixed */}
+        <button className="logout" onClick={handleLogOut}>
+          <AiOutlineLogout />
+        </button>
+
+        <AddJob handleAddJob={handleAddJob} />
       </div>
     </Spin>
   );

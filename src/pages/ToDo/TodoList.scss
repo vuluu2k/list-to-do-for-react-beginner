@@ -1,141 +1,31 @@
 .container-todo {
-    background: rgb(25, 181, 176);
-    background: linear-gradient(76deg, rgba(25, 181, 176, 1) 0%, rgba(217, 0, 255, 1) 100%);
-    height: 200vh;
+  display: flex;
+  padding: 20px;
+  background-color: #ff3cac;
+  background-image: linear-gradient(225deg, #ff3cac 0%, #784ba0 50%, #2b86c5 100%);
 
-    .title-todo {
-        text-align: center;
-        font-size: 30px;
-        font-weight: 600;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+
+  .logout {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    svg {
+      font-size: 20px;
     }
 
-    .logout {
-        float: right;
-        background: linear-gradient(76deg, rgba(25, 181, 176, 1) 0%, rgba(217, 0, 255, 1) 100%);
-        border: none;
-        border-radius: 8px;
-        padding: 6px;
-        color: #fff;
-
-        &:hover {
-            cursor: pointer;
-            opacity: 0.8
-        }
-
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
     }
-
-    .todo-task-add {
-        text-align: center;
-
-        input {
-            border-radius: 16px;
-            width: 50vH;
-            border: none;
-            outline: none;
-            padding: 8px 0 8px 20px;
-        }
-
-        span {
-            border-radius: 8px;
-            margin-left: 8px;
-            padding: 10px;
-            color: #00ff99;
-            background: #741fb2;
-            opacity: 0.8;
-
-            &:hover {
-                opacity: 1;
-                cursor: pointer;
-            }
-
-        }
-    }
-
-    .task-list {
-        margin-top: 5rem;
-        text-align: center;
-        display: flex;
-        max-width: 120vh;
-        flex-wrap: wrap;
-        justify-content: center;
-        color: rgb(82, 19, 119);
-
-
-        .task-todo {
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            background: linear-gradient(14deg, rgba(204, 204, 204, 1) 0%, rgba(25, 111, 178, 1) 40%, rgba(25, 181, 145, 1) 100%);
-            margin: 5px;
-            border-radius: 20px;
-            min-width: 30vh;
-            text-align: center;
-            align-items: center;
-
-
-
-            span {
-                margin-right: 10px;
-            }
-
-            .task-edit {
-                margin-top: 16px;
-
-                input {
-                    border-radius: 12px;
-                    border: none;
-                    padding: 4px 0 4px 16px;
-                    outline: none;
-                }
-            }
-
-            .btn-edit {
-                color: #e3c3a2;
-                margin-top: 10px;
-                border-radius: 8px;
-                padding: 6px;
-                width: 60px;
-                background: linear-gradient(14deg, rgba(174, 25, 181, 1) 0%, rgba(25, 181, 146, 1) 100%);
-                opacity: 1;
-
-                &:hover {
-                    cursor: pointer;
-                    opacity: 0.8;
-                }
-
-            }
-
-            .btn-delete {
-                color: #e3c3a2;
-                cursor: pointer;
-                border-radius: 8px;
-                padding: 6px;
-                width: 60px;
-                background: linear-gradient(14deg, rgba(181, 47, 25, 1) 0%, rgba(178, 25, 124, 1) 52%, rgba(176, 181, 25, 1) 100%);
-                opacity: 1;
-
-                &:hover {
-                    cursor: pointer;
-                    opacity: 0.8;
-                }
-            }
-
-            .btn-save {
-                margin-top: 16px;
-                color: #fff;
-                cursor: pointer;
-                border-radius: 8px;
-                padding: 6px;
-                width: 60px;
-                background: #0d4a88;
-                opacity: 1;
-
-                &:hover {
-                    cursor: pointer;
-                    opacity: 0.8;
-                }
-            }
-        }
-
-    }
+    top: 10px;
+    right: 14px;
+  }
 }

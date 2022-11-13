@@ -1,0 +1,19 @@
+.add-job {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  .modal-add-job {
+    position: absolute;
+    right: 0;
+    top: -95px;
+    padding: 12px;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+
+  .plus-btn {
+    font-size: 50px;
+    color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+}
