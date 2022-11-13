@@ -5,12 +5,14 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { routes } from 'config';
 import { setToken } from 'utils/token';
+import Spin from 'components/Spin';
 
 export default function Login() {
   const navigation = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [spinning, setSpinning] = useState(false);
 
   const handleEmail = e => {
     setEmail(e.target.value);
@@ -46,6 +48,8 @@ export default function Login() {
       return;
     }
 
+    setSpinning(true);
+
     try {
       let res = await handleLogIn(data);
       console.log(res);
@@ -59,10 +63,12 @@ export default function Login() {
     } catch (e) {
       console.log(e);
     }
+
+    setSpinning(false);
   };
 
   return (
-    <>
+    <Spin spinning={spinning}>
       <div className="container-login">
         <div className="login-form">
           <div className="login-label"> Login</div>
@@ -93,6 +99,6 @@ export default function Login() {
           </Form>
         </div>
       </div>
-    </>
+    </Spin>
   );
 }
