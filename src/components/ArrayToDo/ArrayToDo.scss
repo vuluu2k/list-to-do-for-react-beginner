@@ -11,12 +11,38 @@
 }
 
 .todo-item {
+  position: relative;
   border-radius: 3px;
   background-color: #ebecf0;
   padding: 8px;
   margin-top: 8px;
   border: 1px solid #f0f0f0;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  .todo-item-wrapper-action {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+  }
+
+  .todo-item-action {
+    display: none;
+  }
+
+  &:hover .todo-item-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    background: #ddd;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+  }
+
+  .todo-item-action + .todo-item-action {
+    margin-top: 4px;
+  }
 }
 
 .array-todo-title {

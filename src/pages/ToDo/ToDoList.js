@@ -18,9 +18,15 @@ export default function ToDoList() {
 
   useEffect(() => {
     const featchData = async () => {
-      let res = await axios.get('task');
-      let data = res && res.data.tasks.length > 0 ? res.data.tasks : [];
-      setJobs(data);
+      setSpinning(true);
+      try {
+        let res = await axios.get('task');
+        let data = res && res.data.tasks.length > 0 ? res.data.tasks : [];
+        setJobs(data);
+      } catch (error) {
+        console.log(error);
+      }
+      setSpinning(false);
     };
     featchData();
   }, []);
@@ -77,14 +83,15 @@ export default function ToDoList() {
     setJobEdit(jobEditCopy);
   };
 
-  const handleSaveJob = async id => {
+  const handleSaveJob = async ({ _id, name, content, image_url, completed }) => {
+    const jobEdit = { name, content, image_url, completed };
     let isEmpty = Object.keys(jobEdit).length === 0;
     setSpinning(true);
 
-    let res = await axios.patch(`task/${id}`, jobEdit);
+    let res = await axios.patch(`task/${_id}`, jobEdit);
     if (res && !isEmpty) {
       let currentJob = [...jobs];
-      let editIndex = currentJob.findIndex(item => item._id === id);
+      let editIndex = currentJob.findIndex(item => item._id === _id);
       currentJob[editIndex].name = jobEdit.name;
       setJobs(currentJob);
       setIsEdit(false);
@@ -102,7 +109,7 @@ export default function ToDoList() {
       {isLogOut && <Navigate to="/" replace={true} />}
 
       <div className="container-todo">
-        <ArrayToDo tasks={jobs} />
+        <ArrayToDo handleDelete={handleDelete} handleSaveJob={handleSaveJob} tasks={jobs} />
         <ArrayToDo tasks={jobs} />
         <ArrayToDo tasks={jobs} />
         <ArrayToDo tasks={jobs} />
