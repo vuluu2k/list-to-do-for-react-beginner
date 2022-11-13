@@ -1,0 +1,80 @@
+.container-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(90deg, rgba(25, 181, 176, 1) 0%, rgba(217, 0, 255, 1) 100%);
+
+    .login-form {
+        border: 1px solid #ccc;
+        background: #fff;
+        padding: 40px 60px;
+        border-radius: 16px;
+
+        .login-label {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            color: red;
+            font-size: 13px;
+        }
+
+        .fg-pw {
+            margin-bottom: 20px;
+            font-size: 14px;
+            float: right;
+            opacity: 0.8;
+
+            &:hover {
+                cursor: pointer;
+                opacity: 1;
+            }
+        }
+
+
+
+        .btn-login {
+            text-align: center;
+            margin: 20px 0;
+
+            button {
+                border-radius: 16px;
+                min-width: 30vh;
+                background: linear-gradient(90deg, rgba(25, 181, 176, 1) 0%, rgba(217, 0, 255, 1) 100%);
+                border: none;
+            }
+        }
+
+        .sign-up-lable {
+            text-align: center;
+            font-size: 12px;
+            margin: 30px 0 10px 0;
+            opacity: 0.8;
+
+        }
+
+        .sign-up {
+            text-align: center;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 500;
+            opacity: 0.8;
+
+            .sign-up-link {
+                text-decoration: none !important;
+                color: #000;
+            }
+
+            &:hover {
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+    }
+
+}
