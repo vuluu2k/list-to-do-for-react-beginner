@@ -10,32 +10,31 @@ import ArrayToDo from 'components/ArrayToDo';
 
 export default function ToDoList() {
   const [jobs, setJobs] = useState([]);
-  const [job, setJob] = useState('');
-  const [jobEdit, setJobEdit] = useState({});
-  const [isEdit, setIsEdit] = useState(false);
   const [isLogOut, setIsLogOut] = useState(false);
   const [spinning, setSpinning] = useState(false);
+  const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    const featchData = async () => {
-      setSpinning(true);
-      try {
-        let res = await axios.get('task');
-        let data = res && res.data.tasks.length > 0 ? res.data.tasks : [];
-        setJobs(data);
-      } catch (error) {
-        console.log(error);
-      }
-      setSpinning(false);
-    };
-    featchData();
+    loadToken();
+    loadListGroups();
   }, []);
 
-  const handleInput = e => {
-    setJob(e.target.value);
+  const loadToken = () => {
+    const token = localStorage.getItem('jwt-todo');
+    axios.defaults.headers.common = { Authorization: `bearer ${token}` };
   };
 
-  let token = localStorage.getItem('jwt-token');
+  const loadListGroups = async () => {
+    setSpinning(true);
+    try {
+      const { data } = await axios.get('task/group');
+      if (data.success) setGroups(data.groups);
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+    setSpinning(false);
+  };
 
   const handleAddJob = async description => {
     let newJob = {
@@ -44,7 +43,6 @@ export default function ToDoList() {
       content: 'CRUD FastAPI , ReactJs, MongoDB',
       image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb-oKFFYpkJj1_6vGlDVlKFjuRIfcDIa4qhbFlDHA3TA&s',
     };
-    axios.defaults.headers.common = { Authorization: `bearer ${token}` };
 
     if (!newJob.name) {
       alert('Please enter a job name!');
@@ -56,7 +54,6 @@ export default function ToDoList() {
         setJobs([...jobs, newJob]);
       }
     }
-    setJob('');
     setSpinning(false);
   };
 
@@ -71,18 +68,6 @@ export default function ToDoList() {
     setSpinning(false);
   };
 
-  const handleEditJob = item => {
-    console.log(item._id);
-    setIsEdit(true);
-    setJobEdit(item);
-  };
-
-  const handleInputEdit = e => {
-    let jobEditCopy = { ...jobEdit };
-    jobEditCopy.name = e.target.value;
-    setJobEdit(jobEditCopy);
-  };
-
   const handleSaveJob = async ({ _id, name, content, image_url, completed }) => {
     const jobEdit = { name, content, image_url, completed };
     let isEmpty = Object.keys(jobEdit).length === 0;
@@ -94,7 +79,6 @@ export default function ToDoList() {
       let editIndex = currentJob.findIndex(item => item._id === _id);
       currentJob[editIndex].name = jobEdit.name;
       setJobs(currentJob);
-      setIsEdit(false);
     }
 
     setSpinning(false);
@@ -109,13 +93,9 @@ export default function ToDoList() {
       {isLogOut && <Navigate to="/" replace={true} />}
 
       <div className="container-todo">
-        <ArrayToDo handleDelete={handleDelete} handleSaveJob={handleSaveJob} tasks={jobs} />
-        <ArrayToDo tasks={jobs} />
-        <ArrayToDo tasks={jobs} />
-        <ArrayToDo tasks={jobs} />
-        <ArrayToDo tasks={jobs} />
-        <ArrayToDo tasks={jobs} />
-
+        {groups.map((group, idx) => {
+          return <ArrayToDo key={idx} group={group} handleDelete={handleDelete} handleSaveJob={handleSaveJob} tasks={jobs} />;
+        })}
         {/* fixed */}
         <button className="logout" onClick={handleLogOut}>
           <AiOutlineLogout />

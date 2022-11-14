@@ -102,11 +102,12 @@ function ToDoItem({ data, onDelete, onEdit }) {
           </InputGroup>
           <img src={fieldAdd.image_url} alt={fieldAdd.name} />
         </Modal.Body>
+
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Quay lại
           </Button>
-          <Button variant="danger" onClick={() => onEdit({ _id: data._id, ...fieldAdd })}>
+          <Button variant="primary" onClick={() => onEdit({ _id: data._id, ...fieldAdd })}>
             Sửa!
           </Button>
         </Modal.Footer>

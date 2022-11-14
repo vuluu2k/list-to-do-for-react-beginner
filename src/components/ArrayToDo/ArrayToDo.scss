@@ -3,6 +3,7 @@
 }
 .array-todo {
   width: 272px;
+  height: calc(100vh - 80px);
   max-height: calc(100vh - 80px);
   padding: 8px;
   overflow: auto;

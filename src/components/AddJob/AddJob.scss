@@ -1,7 +1,11 @@
 .add-job {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 272px;
+  height: calc(100vh - 40px);
+
   .modal-add-job {
     position: absolute;
     right: 0;
